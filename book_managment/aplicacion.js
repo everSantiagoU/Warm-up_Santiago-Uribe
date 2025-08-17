@@ -18,36 +18,36 @@ function saveBooks(books) {
   fs.writeFileSync(DATA_FILE, JSON.stringify(books, null, 2), "utf-8");
 }
 
-// Crear interfaz para leer inputs
+// interfaz para leer entradas
 const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout,
 });
 
-// Mostrar menú
+//menu
 function showMenu() {
-  console.log("\n=== Book Management App ===");
-  console.log("1. Add a new book");
-  console.log("2. List all books");
-  console.log("3. Search books by title");
-  console.log("4. Remove a book by title");
-  console.log("5. Exit");
-  rl.question("Choose an option: ", handleMenu);
+  console.log("\n app gestion de libros");
+  console.log("1. Añadir un nuevo libro");
+  console.log("2. Listar todos los libros");
+  console.log("3. Buscar libros por titulo");
+  console.log("4. Eliminar un libro por titulo");
+  console.log("5. Salir");
+  rl.question("escoja una opcion: ", handleMenu);
 }
 
-// Manejar opciones
+//manejar laas opciones
 function handleMenu(option) {
   let books = loadBooks();
 
   switch (option) {
-    case "1": // Add
-      rl.question("Title: ", (title) => {
-        rl.question("Author: ", (author) => {
-          rl.question("Year: ", (year) => {
-            rl.question("Genre: ", (genre) => {
+    case "1": // añadir
+      rl.question("Titulo: ", (title) => {
+        rl.question("Autor: ", (author) => {
+          rl.question("Año: ", (year) => {
+            rl.question("Genero: ", (genre) => {
               books.push({ title, author, year, genre });
               saveBooks(books);
-              console.log("✅ Book added!");
+              console.log("libro añadido correctamente");
               showMenu();
             });
           });
@@ -55,11 +55,11 @@ function handleMenu(option) {
       });
       break;
 
-    case "2": // List
+    case "2": // Listar
       if (books.length === 0) {
-        console.log("📂 No books found.");
+        console.log("no se encontro el libro");
       } else {
-        console.log("\n📚 Your books:");
+        console.log("\n Tus libros:");
         books.forEach((b, i) =>
           console.log(`${i + 1}. ${b.title} - ${b.author} (${b.year}) [${b.genre}]`)
         );
@@ -67,15 +67,15 @@ function handleMenu(option) {
       showMenu();
       break;
 
-    case "3": // Search
-      rl.question("Enter title to search: ", (query) => {
+    case "3": // buscar
+      rl.question("Escriba un titulo para buscar: ", (query) => {
         let results = books.filter((b) =>
           b.title.toLowerCase().includes(query.toLowerCase())
         );
         if (results.length === 0) {
-          console.log("❌ No books found.");
+          console.log(" No se encontraron libros.");
         } else {
-          console.log("\n🔎 Search results:");
+          console.log("\n resultados de busqueda");
           results.forEach((b) =>
             console.log(`${b.title} - ${b.author} (${b.year}) [${b.genre}]`)
           );
@@ -84,7 +84,7 @@ function handleMenu(option) {
       });
       break;
 
-    case "4": // Remove
+    case "4": // eliminar
       rl.question("Enter title to remove: ", (title) => {
         let newBooks = books.filter(
           (b) => b.title.toLowerCase() !== title.toLowerCase()
