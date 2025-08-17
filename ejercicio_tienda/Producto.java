@@ -1,12 +1,14 @@
 package ejercicios_primera_clase.ejercicio_tienda;
 
 public class Producto {
+    // definimos una lista de atributos que tendra cada producto
     private String name;
-    private String categoria; // el nombre de la categoría (ej: "Electronics", "Home")
+    private String categoria; 
     private double price;
     private int stock;
     private int unitsSold;
 
+    // creamos un objeto producto
     public Producto(String name, String categoria, double price, int stock, int unitsSold) {
         this.name = name;
         this.categoria = categoria;
@@ -15,7 +17,7 @@ public class Producto {
         this.unitsSold = unitsSold;
     }
 
-    // Getters y setters
+    // getters y setters
     public String getName() {
         return name;
     }
@@ -48,12 +50,12 @@ public class Producto {
         this.unitsSold = unitsSold;
     }
 
-    // Método que calcula el revenue de este producto
+    // metodo que calcula las ganancias de este producto
     public double getRevenue() {
         return price * unitsSold;
     }
 
-    // Reducir el stock en cierta cantidad (simula una venta)
+    // disminuir el stock en cierta cantidad 
     public void reduceStock(int amount) {
         if (amount > 0 && amount <= stock) {
             stock -= amount;
@@ -66,9 +68,9 @@ public class Producto {
         return "Producto{" +
                 "name='" + name + '\'' +
                 ", categoria='" + categoria + '\'' +
-                ", price=" + price +
+                ", precio=" + price +
                 ", stock=" + stock +
-                ", unitsSold=" + unitsSold +
+                ", unidadesVendidas=" + unitsSold +
                 '}';
     }
 }
