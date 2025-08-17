@@ -25,3 +25,36 @@ def scan_folder(folder_path):
                 relative_path = os.path.relpath(filepath, folder_path)  # ruta relativa
                 stats.append((relative_path, lines, words, chars))
     return stats
+
+#esta funcion nos ayudara a imprimir la tabla con todas las caracteristicas requeridas
+def print_summary(stats):
+    print(f"{'File Name':<30} {'Lines':<10} {'Words':<10} {'Characters':<10}")
+    print("-" * 65)
+
+    total_lines = total_words = total_chars = 0
+    for file, lines, words, chars in stats:
+        print(f"{file:<30} {lines:<10} {words:<10} {chars:<10}")
+        total_lines += lines
+        total_words += words
+        total_chars += chars
+
+    print("-" * 65)
+    print(f"{'TOTAL':<30} {total_lines:<10} {total_words:<10} {total_chars:<10}")
+
+#main de la app
+def main():
+    folder_path = input("📂 Ingrese la ruta de la carpeta a analizar: ").strip()
+    if not os.path.exists(folder_path):
+        print("❌ La ruta especificada no existe.")
+        return
+
+    stats = scan_folder(folder_path)
+    if not stats:
+        print("⚠️ No se encontraron archivos .txt en la carpeta.")
+        return
+
+    print_summary(stats)
+
+
+if __name__ == "__main__":
+    main()
