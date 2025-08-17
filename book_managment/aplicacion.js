@@ -85,27 +85,27 @@ function handleMenu(option) {
       break;
 
     case "4": // eliminar
-      rl.question("Enter title to remove: ", (title) => {
+      rl.question("escribe un titulo para eliminar: ", (title) => {
         let newBooks = books.filter(
           (b) => b.title.toLowerCase() !== title.toLowerCase()
         );
         if (newBooks.length === books.length) {
-          console.log("❌ No book found with that title.");
+          console.log("no se encontraron resultados ");
         } else {
           saveBooks(newBooks);
-          console.log("🗑️ Book removed.");
+          console.log("libro eliminado :)");
         }
         showMenu();
       });
       break;
 
-    case "5": // Exit
-      console.log("👋 Goodbye!");
+    case "5": // Salir
+      console.log("gracias por usar sistemas de ing uribe, vuelva pronto!");
       rl.close();
       break;
 
     default:
-      console.log("⚠️ Invalid option, try again.");
+      console.log("opcion invalida, intente de nuevo.");
       showMenu();
       break;
   }
